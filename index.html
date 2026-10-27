@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Velin — Votre bibliothèque, simplement. Gérez vos livres, vos lectures, vos envies et vos emplacements sur iPhone, iPad et iPhone Duo.">
+<meta name="theme-color" content="#F6EDDF">
+<title>Velin — Votre bibliothèque, simplement</title>
+<style>
+:root{
+  --bg:#F6EDDF;--surface:#FAF3EA;--surface2:#EEE2D4;--text:#2E2E2E;--muted:#6F6A64;
+  --border:#E3DED7;--accent:#6B7EA7;--sage:#A7B89F;--terra:#D19B7F;--max:1180px;
+  --shadow:0 18px 48px rgba(68,52,38,.10)
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",Segoe UI,sans-serif;line-height:1.6}
+h1,h2,h3{font-family:Georgia,"Times New Roman",serif;line-height:1.08;letter-spacing:-.02em;margin:0 0 .55em}
+h1{font-size:clamp(3.2rem,7vw,6.5rem)}h2{font-size:clamp(2rem,4vw,3.35rem)}h3{font-size:1.4rem}
+p{margin:.3rem 0 1rem}a{color:inherit}.container{width:min(calc(100% - 32px),var(--max));margin:auto}
+.topbar{position:sticky;top:0;z-index:50;background:rgba(246,237,223,.88);backdrop-filter:blur(18px);border-bottom:1px solid rgba(227,222,215,.8)}
+.nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;gap:12px;align-items:center;text-decoration:none;font-weight:750}.brand-mark{width:38px;height:38px;display:grid;place-items:center;border-radius:12px;background:var(--accent);color:white;font-family:Georgia,serif}
+.nav-actions{display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:flex-end}.nav-link,.lang-btn{border:0;background:transparent;font:inherit;padding:10px 12px;border-radius:999px;text-decoration:none;cursor:pointer}
+.nav-link:hover,.lang-btn:hover{background:rgba(255,255,255,.55)}.lang-btn.active{background:var(--accent);color:white}
+.hero{padding:76px 0 52px}.hero-grid{display:grid;grid-template-columns:1.06fr .94fr;gap:56px;align-items:center}
+.eyebrow{display:inline-flex;padding:8px 12px;border-radius:999px;background:rgba(167,184,159,.28);color:#566052;font-weight:700;margin-bottom:18px}
+.hero-copy p{font-size:1.16rem;color:var(--muted);max-width:690px}.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:25px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 18px;border-radius:14px;text-decoration:none;font-weight:750;border:1px solid transparent}
+.btn-primary{background:var(--accent);color:white;box-shadow:var(--shadow)}.btn-secondary{background:rgba(255,255,255,.48);border-color:var(--border)}.btn-disabled{background:var(--surface2);color:var(--muted)}
+.device-stage{min-height:510px;position:relative}.device{position:absolute;background:#171717;border:7px solid #171717;border-radius:28px;box-shadow:0 28px 70px rgba(45,35,28,.22);overflow:hidden}
+.device-screen{width:100%;height:100%;background:linear-gradient(135deg,#F2E8DC,#FBF7F2);display:grid;place-items:center;text-align:center;color:var(--muted);padding:20px}
+.device.phone{width:185px;height:380px;left:5%;bottom:30px;z-index:3}.device.tablet{width:385px;height:270px;right:0;top:28px;z-index:1;border-radius:23px}.device.duo{width:345px;height:242px;right:5%;bottom:18px;z-index:2;border-radius:23px}
+.section{padding:70px 0}.section-head{max-width:790px;margin-bottom:34px}.section-head p,.card p{color:var(--muted);font-size:1.04rem}
+.grid{display:grid;gap:18px}.grid-3{grid-template-columns:repeat(3,1fr)}.grid-2{grid-template-columns:repeat(2,1fr)}
+.card{background:rgba(255,255,255,.42);border:1px solid var(--border);border-radius:22px;padding:24px;box-shadow:0 8px 24px rgba(74,55,40,.045)}
+.icon{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-weight:800;margin-bottom:15px}.blue{background:rgba(107,126,167,.18);color:var(--accent)}.sage{background:rgba(167,184,159,.23);color:#5e6b58}.terra{background:rgba(209,155,127,.22);color:#9f6549}
+.feature-wide{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center;background:rgba(255,255,255,.38);border:1px solid var(--border);border-radius:28px;padding:28px}
+.shot{min-height:240px;aspect-ratio:16/10;border-radius:22px;border:1px dashed #bfb4a9;background:linear-gradient(135deg,#F2E8DC,#FBF7F2);display:grid;place-items:center;text-align:center;padding:24px;color:var(--muted)}
+.shot strong{display:block;color:var(--text);margin-bottom:6px}.location-path{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:18px}.pill{padding:8px 12px;border-radius:999px;background:var(--surface2);border:1px solid var(--border);font-weight:700}
+.faq{display:grid;gap:12px}details{background:rgba(255,255,255,.42);border:1px solid var(--border);border-radius:16px;padding:0 18px}summary{cursor:pointer;padding:18px 0;font-weight:750;list-style:none}summary::-webkit-details-marker{display:none}details p{color:var(--muted);padding-bottom:16px}
+.support-box{background:linear-gradient(135deg,rgba(107,126,167,.13),rgba(209,155,127,.14));border:1px solid var(--border);border-radius:28px;padding:32px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.privacy{background:#EFE5D8;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}.privacy h3{margin-top:28px;font-size:1.22rem}.privacy p,.privacy li{color:#5f5a54}.privacy ul{padding-left:1.2rem}
+footer{padding:36px 0 54px;color:var(--muted)}.footer-grid{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}.footer-links{display:flex;gap:16px;flex-wrap:wrap}
+.lang{display:none}.lang.active{display:block}
+@media(max-width:900px){.hero-grid,.feature-wide,.grid-3,.grid-2{grid-template-columns:1fr}.device-stage{min-height:460px}.device.phone{left:2%}.device.tablet{width:335px}.device.duo{width:300px}}
+@media(max-width:620px){.nav{align-items:flex-start;padding:13px 0}.nav-link{display:none}.hero{padding-top:44px}.device-stage{min-height:405px}.device.phone{width:145px;height:300px}.device.tablet{width:255px;height:185px}.device.duo{width:245px;height:170px}.support-box{padding:24px}}
+</style>
+</head>
+<body>
+<header class="topbar">
+<div class="container nav">
+<a href="#top" class="brand"><span class="brand-mark">V</span><span>Velin</span></a>
+<div class="nav-actions">
+<a class="nav-link" href="#features" data-fr="Fonctionnalités" data-en="Features">Fonctionnalités</a>
+<a class="nav-link" href="#faq" data-fr="FAQ" data-en="FAQ">FAQ</a>
+<a class="nav-link" href="#support" data-fr="Support" data-en="Support">Support</a>
+<a class="nav-link" href="#privacy" data-fr="Confidentialité" data-en="Privacy">Confidentialité</a>
+<button class="lang-btn active" data-lang="fr">FR</button>
+<button class="lang-btn" data-lang="en">EN</button>
+</div>
+</div>
+</header>
+<main id="top">
+
+<div class="lang active" id="lang-fr">
+<section class="hero"><div class="container hero-grid">
+<div class="hero-copy">
+<span class="eyebrow">📚 Bibliothèque personnelle</span>
+<h1>Votre bibliothèque,<br>simplement.</h1>
+<p>Cataloguez vos livres, suivez vos lectures, retrouvez chaque ouvrage chez vous et gardez votre bibliothèque synchronisée sur tous vos appareils Apple.</p>
+<p>Velin vous accompagne au quotidien pour organiser votre collection, vos envies et vos lectures, avec une interface élégante pensée pour l’iPhone, l’iPad et l’iPhone Duo.</p>
+<div class="cta-row"><span class="btn btn-disabled">Bientôt disponible sur l’App Store</span><a href="#features" class="btn btn-secondary">Découvrir Velin</a></div>
+</div>
+<div class="device-stage" aria-label="Aperçu de Velin sur iPhone, iPad et iPhone Duo">
+<div class="device phone"><div class="device-screen"><div><strong>Capture iPhone</strong><br>Bibliothèque ou scanner<br><small>assets/velin-iphone.png</small></div></div></div>
+<div class="device tablet"><div class="device-screen"><div><strong>Capture iPad</strong><br>Bibliothèque grand écran<br><small>assets/velin-ipad.png</small></div></div></div>
+<div class="device duo"><div class="device-screen"><div><strong>Capture iPhone Duo</strong><br>Vue master/detail<br><small>assets/velin-duo.png</small></div></div></div>
+</div>
+</div></section>
+
+<section class="section" id="features"><div class="container">
+<div class="section-head"><h2>Toute votre bibliothèque, au même endroit</h2><p>Velin rassemble votre collection personnelle dans une interface claire et agréable à parcourir. Ajoutez vos ouvrages, retrouvez leurs informations, suivez votre progression et organisez votre bibliothèque physique.</p></div>
+<div class="grid grid-3">
+<article class="card"><div class="icon blue">B</div><h3>Bibliothèque</h3><p>Regroupez tous les ouvrages que vous possédez, recherchez-les rapidement et retrouvez leur statut, leur note et leur emplacement.</p></article>
+<article class="card"><div class="icon terra">♡</div><h3>Liste d’envies</h3><p>Gardez de côté les ouvrages que vous aimeriez découvrir ou acheter plus tard, séparément de votre collection actuelle.</p></article>
+<article class="card"><div class="icon sage">✓</div><h3>Suivi de lecture</h3><p>À lire, En cours, Lu : retrouvez immédiatement vos lectures actives et conservez l’historique des ouvrages terminés.</p></article>
+</div></div></section>
+
+<section class="section"><div class="container feature-wide">
+<div><h2>Ajoutez vos livres comme vous le souhaitez</h2><p>Velin propose trois méthodes pour enrichir rapidement votre bibliothèque.</p>
+<div class="grid">
+<div class="card"><h3>Scanner un livre</h3><p>Scannez le code-barres ISBN au dos du livre. Velin recherche automatiquement les informations disponibles.</p></div>
+<div class="card"><h3>Scanner en série</h3><p>Ajoutez toute une étagère en enchaînant plusieurs scans et affectez les ouvrages au même emplacement.</p></div>
+<div class="card"><h3>Rechercher un ouvrage</h3><p>Recherchez par titre, auteur ou ISBN et vérifiez les informations avant l’enregistrement.</p></div>
+</div></div>
+<div class="shot"><div><strong>Capture recommandée</strong>Écran « Ajouter un ouvrage »<br>Scanner un livre · Scanner en série · Rechercher</div></div>
+</div></section>
+
+<section class="section"><div class="container">
+<div class="section-head"><h2>Des métadonnées plus complètes</h2><p>Toutes les éditions ne sont pas référencées de la même façon. Velin peut consulter plusieurs services bibliographiques afin d’améliorer la reconnaissance des ouvrages.</p></div>
+<div class="grid grid-3">
+<div class="card"><h3>Sources françaises</h3><p>Bibliothèque nationale de France et Sudoc.</p></div>
+<div class="card"><h3>Sources internationales</h3><p>Google Books et Open Library.</p></div>
+<div class="card"><h3>BD, mangas et comics</h3><p>Scrinis complète la recherche lorsqu’une édition est difficile à retrouver.</p></div>
+</div></div></section>
+
+<section class="section"><div class="container feature-wide">
+<div><h2>Retrouvez toujours vos livres</h2><p>Une grande bibliothèque peut vite devenir difficile à organiser. Velin vous permet d’indiquer précisément où se trouve chaque ouvrage.</p>
+<div class="location-path"><span class="pill">Pièce</span><span>→</span><span class="pill">Rangement</span><span>→</span><span class="pill">Étagère</span></div>
+<p style="margin-top:18px">Exemple : <strong>Chambre → Bibliothèque → Étagère 2</strong></p></div>
+<div class="shot"><div><strong>Capture recommandée</strong>Vue Emplacements sur iPad ou iPhone Duo</div></div>
+</div></section>
+
+<section class="section"><div class="container">
+<div class="section-head"><h2>Pensé pour tous vos appareils Apple</h2><p>Velin adapte son interface à l’espace disponible afin de rester agréable à utiliser sur chaque appareil compatible.</p></div>
+<div class="grid grid-3">
+<div class="card"><div class="icon blue">iP</div><h3>iPhone</h3><p>Scannez un ouvrage, recherchez un titre ou retrouvez où se trouve un livre en quelques secondes.</p></div>
+<div class="card"><div class="icon sage">iPad</div><h3>iPad</h3><p>Profitez d’un affichage plus confortable pour parcourir une grande collection et gérer vos emplacements.</p></div>
+<div class="card"><div class="icon terra">Duo</div><h3>iPhone Duo</h3><p>Parcourez votre bibliothèque tout en conservant les détails d’un ouvrage visibles à côté lorsque l’espace le permet.</p></div>
+</div></div></section>
+
+<section class="section"><div class="container feature-wide">
+<div><h2>Synchronisation iCloud</h2><p>Lorsque vous utilisez iCloud, Velin peut synchroniser automatiquement votre bibliothèque, vos statuts de lecture, vos notes, vos emplacements et votre liste d’envies entre vos appareils Apple connectés au même compte.</p><p><strong>Aucun compte Velin supplémentaire n’est nécessaire.</strong></p></div>
+<div class="shot"><div><strong>Suggestion visuelle</strong>iPhone + iPad avec la même bibliothèque synchronisée</div></div>
+</div></section>
+
+<section class="section" id="faq"><div class="container">
+<div class="section-head"><h2>Questions fréquentes</h2></div>
+<div class="faq">
+<details><summary>Dois-je créer un compte Velin ?</summary><p>Non. Velin ne nécessite pas de compte spécifique. Si vous utilisez iCloud, vos appareils doivent simplement être connectés à votre compte Apple.</p></details>
+<details><summary>Comment ajouter un livre ?</summary><p>Vous pouvez scanner son code-barres ISBN, utiliser le scan en série ou rechercher l’ouvrage par titre, auteur ou ISBN.</p></details>
+<details><summary>Puis-je ajouter un livre qui n’est pas trouvé automatiquement ?</summary><p>Oui. Si aucune source ne permet d’identifier correctement l’ouvrage, Velin vous permet de compléter les informations nécessaires.</p></details>
+<details><summary>Puis-je modifier la couverture d’un ouvrage ?</summary><p>Oui. Lorsque plusieurs couvertures sont disponibles, Velin peut vous permettre de choisir celle qui correspond le mieux à votre édition.</p></details>
+<details><summary>Puis-je suivre mes lectures ?</summary><p>Oui. Les ouvrages peuvent notamment être classés À lire, En cours ou Lu.</p></details>
+<details><summary>Puis-je noter un livre ?</summary><p>Oui. Les ouvrages terminés peuvent recevoir une note.</p></details>
+<details><summary>Puis-je créer une liste d’envies ?</summary><p>Oui. La section Envies conserve les ouvrages que vous aimeriez acheter ou lire plus tard.</p></details>
+<details><summary>Puis-je indiquer où se trouve physiquement un livre ?</summary><p>Oui. Velin organise les emplacements selon trois niveaux : Pièce → Rangement → Étagère.</p></details>
+<details><summary>Mes données sont-elles synchronisées entre mes appareils ?</summary><p>Oui, lorsque la synchronisation iCloud est disponible et que vos appareils utilisent le même compte Apple.</p></details>
+<details><summary>Velin fonctionne-t-elle sur iPad et iPhone Duo ?</summary><p>Oui. L’interface s’adapte à la taille de l’écran et profite des grands formats pris en charge par iOS.</p></details>
+<details><summary>Pourquoi certains livres ou certaines couvertures ne sont-ils pas trouvés ?</summary><p>Certaines éditions peuvent être absentes de certains catalogues. Velin utilise plusieurs sources, mais la disponibilité de chaque ouvrage ou couverture ne peut pas être garantie.</p></details>
+</div></div></section>
+
+<section class="section" id="support"><div class="container">
+<div class="support-box"><div><h2>Besoin d’aide ?</h2><p>Une question, un problème ou une suggestion pour améliorer Velin ? Nous serons heureux de vous aider.</p></div>
+<a class="btn btn-primary" href="mailto:support_velin@icloud.com?subject=Support%20Velin">Contacter le support</a></div>
+<p style="margin-top:16px;color:var(--muted)">Support : <a href="mailto:support_velin@icloud.com">support_velin@icloud.com</a></p>
+</div></section>
+
+<section class="section privacy" id="privacy"><div class="container">
+<div class="section-head"><h2>Politique de confidentialité</h2><p><strong>Dernière mise à jour : 26 octobre 2026</strong></p><p>Votre vie privée est importante. Velin a été conçue pour fonctionner avec le minimum de données nécessaires et sans création de compte utilisateur propre à l’application.</p></div>
+<h3>Données de votre bibliothèque</h3><p>Velin peut stocker des informations telles que les titres, auteurs, ISBN, couvertures, statuts de lecture, notes, dates de lecture, liste d’envies et emplacements de vos ouvrages. Ces informations sont utilisées uniquement pour fournir les fonctionnalités de l’application.</p>
+<h3>Synchronisation iCloud</h3><p>Lorsque la synchronisation iCloud est utilisée, les données de Velin peuvent être stockées et synchronisées via les services iCloud / CloudKit d’Apple associés à votre compte. Velin n’exploite pas ces données à des fins publicitaires. La disponibilité et le fonctionnement d’iCloud dépendent des services Apple et de la configuration de votre appareil.</p>
+<h3>Caméra</h3><p>Velin demande l’accès à la caméra uniquement lorsque vous utilisez une fonctionnalité nécessitant le scan du code-barres ISBN d’un ouvrage. Les images de la caméra sont utilisées pour détecter le code-barres. Velin n’utilise pas la caméra pour vous identifier ou effectuer un suivi.</p>
+<h3>Recherche bibliographique</h3><p>Lorsque vous scannez ou recherchez un ouvrage, certaines informations nécessaires à la recherche peuvent être transmises à des services bibliographiques tiers, notamment un ISBN, un titre ou un auteur.</p>
+<ul><li>Bibliothèque nationale de France ;</li><li>Google Books ;</li><li>Open Library ;</li><li>Scrinis ;</li><li>Sudoc.</li></ul>
+<p>L’utilisation de ces services peut être soumise aux politiques de confidentialité et conditions propres à leurs éditeurs respectifs.</p>
+<h3>Publicité et suivi</h3><p>Velin n’intègre pas de publicité, n’utilise pas vos données pour créer un profil publicitaire, ne vend pas vos données personnelles et n’effectue pas de suivi publicitaire entre différentes applications ou différents sites.</p>
+<h3>Données analytiques</h3><p>Si aucune solution d’analytics externe n’est intégrée à Velin, aucune donnée analytique supplémentaire n’est collectée directement par l’application au-delà des mécanismes éventuellement proposés par Apple et configurés par l’utilisateur.</p>
+<h3>Conservation et suppression</h3><p>Les données de votre bibliothèque restent sous votre contrôle. Vous pouvez supprimer des ouvrages, des emplacements ou d’autres informations directement depuis l’application lorsque la fonctionnalité correspondante est disponible. La suppression de l’application ou des données iCloud associées peut également entraîner la suppression de ces informations conformément au fonctionnement des services Apple.</p>
+<h3>Enfants</h3><p>Velin n’est pas conçue pour collecter intentionnellement des données personnelles concernant des enfants.</p>
+<h3>Modifications de cette politique</h3><p>Cette politique de confidentialité peut être mise à jour afin de refléter les évolutions de Velin ou des exigences réglementaires. La date de dernière mise à jour est indiquée en haut de cette section.</p>
+<h3>Contact</h3><p>Pour toute question relative à Velin ou à cette politique : <a href="mailto:support_velin@icloud.com">support_velin@icloud.com</a></p>
+</div></section>
+</div>
+
+<div class="lang" id="lang-en">
+<section class="hero"><div class="container hero-grid">
+<div class="hero-copy">
+<span class="eyebrow">📚 Personal library</span>
+<h1>Your library,<br>simply organized.</h1>
+<p>Catalog your books, track your reading, find every book in your home, and keep your library synchronized across your Apple devices.</p>
+<p>Velin helps you organize your collection, wishlist and reading activity through an elegant interface designed for iPhone, iPad and iPhone Duo.</p>
+<div class="cta-row"><span class="btn btn-disabled">Coming soon on the App Store</span><a href="#features-en" class="btn btn-secondary">Discover Velin</a></div>
+</div>
+<div class="device-stage" aria-label="Velin preview on iPhone, iPad and iPhone Duo">
+<div class="device phone"><div class="device-screen"><div><strong>iPhone screenshot</strong><br>Library or scanner<br><small>assets/velin-iphone.png</small></div></div></div>
+<div class="device tablet"><div class="device-screen"><div><strong>iPad screenshot</strong><br>Large-screen library<br><small>assets/velin-ipad.png</small></div></div></div>
+<div class="device duo"><div class="device-screen"><div><strong>iPhone Duo screenshot</strong><br>Master/detail view<br><small>assets/velin-duo.png</small></div></div></div>
+</div>
+</div></section>
+
+<section class="section" id="features-en"><div class="container">
+<div class="section-head"><h2>Your entire library in one place</h2><p>Velin brings your personal book collection together in a clear, enjoyable interface. Add books, retrieve their information, track your reading progress and organize your physical library.</p></div>
+<div class="grid grid-3">
+<article class="card"><div class="icon blue">L</div><h3>Library</h3><p>Keep all the books you own together and quickly access their reading status, rating and physical location.</p></article>
+<article class="card"><div class="icon terra">♡</div><h3>Wishlist</h3><p>Save books you would like to discover or purchase later, separately from the books you already own.</p></article>
+<article class="card"><div class="icon sage">✓</div><h3>Reading tracking</h3><p>To Read, Reading and Read: instantly find active reads and keep a history of finished books.</p></article>
+</div></div></section>
+
+<section class="section"><div class="container feature-wide">
+<div><h2>Add books your way</h2><p>Velin gives you several ways to quickly build your library.</p>
+<div class="grid">
+<div class="card"><h3>Scan a book</h3><p>Scan the ISBN barcode on the back of the book. Velin automatically searches available sources.</p></div>
+<div class="card"><h3>Batch scan</h3><p>Scan several books in a row and assign them to the same location without repeating the process.</p></div>
+<div class="card"><h3>Search for a book</h3><p>Search by title, author or ISBN and review the available information before saving.</p></div>
+</div></div>
+<div class="shot"><div><strong>Recommended screenshot</strong>“Add a book” screen<br>Scan · Batch scan · Search</div></div>
+</div></section>
+
+<section class="section"><div class="container">
+<div class="section-head"><h2>Better bibliographic coverage</h2><p>Not every edition is indexed in the same way. Velin may query several bibliographic services to improve book recognition.</p></div>
+<div class="grid grid-3">
+<div class="card"><h3>French sources</h3><p>Bibliothèque nationale de France and Sudoc.</p></div>
+<div class="card"><h3>International sources</h3><p>Google Books and Open Library.</p></div>
+<div class="card"><h3>Comics and manga</h3><p>Scrinis can complement searches when an edition is difficult to find elsewhere.</p></div>
+</div></div></section>
+
+<section class="section"><div class="container feature-wide">
+<div><h2>Always know where your books are</h2><p>Velin lets you record exactly where each book is stored using a simple hierarchy.</p>
+<div class="location-path"><span class="pill">Room</span><span>→</span><span class="pill">Storage</span><span>→</span><span class="pill">Shelf</span></div>
+<p style="margin-top:18px">Example: <strong>Bedroom → Bookcase → Shelf 2</strong></p></div>
+<div class="shot"><div><strong>Recommended screenshot</strong>Locations view on iPad or iPhone Duo</div></div>
+</div></section>
+
+<section class="section"><div class="container">
+<div class="section-head"><h2>Designed for all your Apple devices</h2><p>Velin adapts its interface to the available screen space so that your library stays comfortable to use everywhere.</p></div>
+<div class="grid grid-3">
+<div class="card"><div class="icon blue">iP</div><h3>iPhone</h3><p>Scan books, search for titles and find where a book is stored in just a few seconds.</p></div>
+<div class="card"><div class="icon sage">iPad</div><h3>iPad</h3><p>Enjoy a more spacious interface for browsing large collections and managing locations.</p></div>
+<div class="card"><div class="icon terra">Duo</div><h3>iPhone Duo</h3><p>Browse your library while keeping the selected book’s details visible alongside it whenever the available space allows.</p></div>
+</div></div></section>
+
+<section class="section"><div class="container feature-wide">
+<div><h2>iCloud synchronization</h2><p>When iCloud is available, Velin can automatically synchronize your library, reading statuses, ratings, locations and wishlist across Apple devices signed in to the same account.</p><p><strong>No additional Velin account is required.</strong></p></div>
+<div class="shot"><div><strong>Visual suggestion</strong>iPhone + iPad showing the same synchronized library</div></div>
+</div></section>
+
+<section class="section"><div class="container">
+<div class="section-head"><h2>Frequently Asked Questions</h2></div>
+<div class="faq">
+<details><summary>Do I need to create a Velin account?</summary><p>No. Velin does not require a separate user account. If you use iCloud synchronization, your devices simply need to be signed in to your Apple Account.</p></details>
+<details><summary>How can I add a book?</summary><p>You can scan its ISBN barcode, use batch scanning, or search by title, author or ISBN.</p></details>
+<details><summary>Can I add a book that cannot be found automatically?</summary><p>Yes. If no source can correctly identify your book, Velin lets you complete the required information.</p></details>
+<details><summary>Can I change a book cover?</summary><p>Yes. When several covers are available, Velin may let you choose the one that best matches your edition.</p></details>
+<details><summary>Can I track books I am currently reading?</summary><p>Yes. Books can be organized using statuses such as To Read, Reading and Read.</p></details>
+<details><summary>Can I rate a book?</summary><p>Yes. Finished books can be rated.</p></details>
+<details><summary>Can I create a wishlist?</summary><p>Yes. Wishlist lets you save books you may want to buy or read later.</p></details>
+<details><summary>Can I record where a book is physically stored?</summary><p>Yes. Velin organizes locations using Room → Storage → Shelf.</p></details>
+<details><summary>Are my data synchronized across devices?</summary><p>Yes, when iCloud synchronization is available and your devices use the same Apple Account.</p></details>
+<details><summary>Does Velin work on iPad and iPhone Duo?</summary><p>Yes. The interface adapts to the available space and larger screen configurations supported by iOS.</p></details>
+<details><summary>Why are some books or covers not found?</summary><p>Some editions may be missing from certain catalogs. Velin uses several sources, but availability of every book or cover cannot be guaranteed.</p></details>
+</div></div></section>
+
+<section class="section"><div class="container">
+<div class="support-box"><div><h2>Need help?</h2><p>Have a question, found an issue or have an idea that could improve Velin? We will be happy to help.</p></div>
+<a class="btn btn-primary" href="mailto:support_velin@icloud.com?subject=Velin%20Support">Contact Support</a></div>
+<p style="margin-top:16px;color:var(--muted)">Support: <a href="mailto:support_velin@icloud.com">support_velin@icloud.com</a></p>
+</div></section>
+
+<section class="section privacy"><div class="container">
+<div class="section-head"><h2>Privacy Policy</h2><p><strong>Last updated: October 26, 2026</strong></p><p>Your privacy matters. Velin is designed to operate with the minimum amount of information required and does not require a dedicated Velin account.</p></div>
+<h3>Library data</h3><p>Velin may store information such as titles, authors, ISBNs, covers, reading statuses, ratings, reading dates, wishlist entries and book locations. This information is used solely to provide the application’s features.</p>
+<h3>iCloud synchronization</h3><p>When iCloud synchronization is used, Velin data may be stored and synchronized through Apple iCloud / CloudKit services associated with your account. Velin does not use this information for advertising purposes.</p>
+<h3>Camera</h3><p>Velin requests access to the camera only when you use a feature that requires scanning a book’s ISBN barcode. Camera images are used to detect the barcode. Velin does not use the camera to identify or track you.</p>
+<h3>Bibliographic searches</h3><p>When you scan or search for a book, information required for the search may be sent to third-party bibliographic services. Depending on the search, this may include an ISBN, title or author.</p>
+<ul><li>Bibliothèque nationale de France;</li><li>Google Books;</li><li>Open Library;</li><li>Scrinis;</li><li>Sudoc.</li></ul>
+<p>Use of these services may be subject to their respective privacy policies and terms.</p>
+<h3>Advertising and tracking</h3><p>Velin does not include advertising, does not use your information to create advertising profiles, does not sell personal data and does not perform advertising tracking across apps or websites.</p>
+<h3>Analytics</h3><p>If Velin does not integrate an external analytics service, no additional analytics data is collected directly by the app beyond mechanisms that may be provided by Apple and controlled through the user’s Apple settings.</p>
+<h3>Data retention and deletion</h3><p>Your library data remains under your control. You can delete books, locations and other information directly from the app whenever the relevant feature is available. Removing the app or associated iCloud data may also remove this information according to the way Apple services operate.</p>
+<h3>Children</h3><p>Velin is not designed to intentionally collect personal information from children.</p>
+<h3>Changes to this policy</h3><p>This privacy policy may be updated to reflect changes to Velin or applicable legal requirements. The latest revision date appears at the top of this section.</p>
+<h3>Contact</h3><p>For questions regarding Velin or this privacy policy: <a href="mailto:support_velin@icloud.com">support_velin@icloud.com</a></p>
+</div></section>
+</div>
+
+</main>
+<footer>
+<div class="container footer-grid">
+<div><strong style="color:var(--text)">Velin</strong><br><span data-fr="Votre bibliothèque, simplement." data-en="Your library, simply organized.">Votre bibliothèque, simplement.</span><br><br>© 2026 Olivier Rouchié. <span data-fr="Tous droits réservés." data-en="All rights reserved.">Tous droits réservés.</span></div>
+<div class="footer-links"><a href="#support">Support</a><a href="#privacy" data-fr="Confidentialité" data-en="Privacy">Confidentialité</a></div>
+</div>
+<div class="container" style="margin-top:20px;font-size:.9rem">Apple, iPhone, iPad, iCloud <span data-fr="et les autres marques Apple mentionnées sont des marques d’Apple Inc." data-en="and other Apple trademarks mentioned are trademarks of Apple Inc.">et les autres marques Apple mentionnées sont des marques d’Apple Inc.</span></div>
+</footer>
+<script>
+const buttons=document.querySelectorAll('.lang-btn');
+const langs={fr:document.getElementById('lang-fr'),en:document.getElementById('lang-en')};
+function setLanguage(lang){
+  Object.entries(langs).forEach(([k,el])=>el.classList.toggle('active',k===lang));
+  buttons.forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+  document.documentElement.lang=lang;
+  document.querySelectorAll('[data-fr][data-en]').forEach(el=>{el.textContent=el.dataset[lang]});
+  localStorage.setItem('velin-language',lang);
+}
+buttons.forEach(b=>b.addEventListener('click',()=>setLanguage(b.dataset.lang)));
+const stored=localStorage.getItem('velin-language');
+const preferred=stored||(navigator.language&&navigator.language.toLowerCase().startsWith('fr')?'fr':'en');
+setLanguage(preferred);
+</script>
+</body>
+</html>
